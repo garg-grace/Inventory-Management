@@ -6,6 +6,7 @@ import com.hibernateapp.model.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import com.hibernateapp.service.*;
@@ -118,7 +119,11 @@ public class InwardController {
                     });
                     listDto.stream().forEach(System.out::println);
                     break;
-                
+                case 4:
+                    list = inwardService.getAll();
+                    Map<String,Long> map = inwardService.getProductForEachWarehouse(list);
+                    System.out.println(map);
+                    break;
             }
             entityTransaction.commit();
         }
