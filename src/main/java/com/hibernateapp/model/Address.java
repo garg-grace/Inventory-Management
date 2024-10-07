@@ -47,6 +47,14 @@ public class Address {
         this.zipcode = zipcode;
     }
 
-    
-
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", hno='" + hno + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                '}';
+    }
 }

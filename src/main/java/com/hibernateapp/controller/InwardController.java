@@ -1,8 +1,10 @@
 package com.hibernateapp.controller;
+import com.hibernateapp.dto.InwardDto;
 import com.hibernateapp.exception.ResourceNotFoundException;
 import com.hibernateapp.model.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -97,6 +99,24 @@ public class InwardController {
                     //give this inward object to service and persist it in db
                     inwardService.insert(inwardRegister);
                     System.out.println("Entry made in inward register");
+                    break;
+                case 2:
+                    List<InwardRegister> list = inwardService.getAll();
+                    List<InwardDto> listDto = new ArrayList<>();
+                    list.stream().forEach(ir->{
+                        InwardDto dto = new InwardDto();
+                        dto.setId(ir.getId());
+                        dto.setInvoice(ir.getInvoice());
+                        dto.setQuantity(ir.getQuantity());
+                        dto.setDateOfSupply(ir.getDateOfSupply());
+                        dto.setProductTitle(ir.getProduct().getTitle());
+                        dto.setSupplierName(ir.getSupplier().getName());
+                        dto.setSupplierCity(ir.getSupplier().getAddress().getCity());
+                        dto.setWarehouseLocation(ir.getWarehouse().getLocation());
+                        dto.setProductCategory(ir.getProduct().getCategory().getName());
+                        listDto.add(dto);
+                    });
+                    listDto.stream().forEach(System.out::println);
                     break;
                 
             }

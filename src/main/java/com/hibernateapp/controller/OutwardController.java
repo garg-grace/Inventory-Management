@@ -31,7 +31,7 @@ public class OutwardController {
             entityTransaction.begin();
             System.out.println("1.Make Outward Entry");
             System.out.println("2. View all Outwards");
-            System.out.println("3. View Outards by warehouse");
+            System.out.println("3. View Outwards by warehouse");
             System.out.println("4. View product stats for each warehouse");
             System.out.println("5. Delete Outward Entry");
             System.out.println("0. Exit");
