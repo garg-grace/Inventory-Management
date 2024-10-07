@@ -124,6 +124,19 @@ public class InwardController {
                     Map<String,Long> map = inwardService.getProductForEachWarehouse(list);
                     System.out.println(map);
                     break;
+                case 5:
+                    System.out.println("Enter Inward ID");
+                    int inwardId = sc.nextInt();
+
+                    try {
+                        InwardRegister ir = inwardService.getById(inwardId);
+                        inwardService.delete(ir);
+                        System.out.println("Entry deleted..");
+                    } catch (ResourceNotFoundException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                    break;
             }
             entityTransaction.commit();
         }

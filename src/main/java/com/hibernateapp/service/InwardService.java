@@ -1,5 +1,6 @@
 package com.hibernateapp.service;
 
+import com.hibernateapp.exception.ResourceNotFoundException;
 import com.hibernateapp.model.InwardRegister;
 
 import jakarta.persistence.EntityManager;
@@ -30,5 +31,16 @@ public class InwardService {
         Map<String,Long> map = list.stream()
                 .collect(Collectors.groupingBy((InwardRegister ir)->ir.getWarehouse().getLocation(),Collectors.counting()));
         return  map;
+    }
+
+    public InwardRegister getById(int inwardId) throws ResourceNotFoundException {
+        InwardRegister inwardRegister = entityManager.find(InwardRegister.class,inwardId);
+        if(inwardRegister == null) throw new ResourceNotFoundException("Invalid IW ID..");
+
+        return inwardRegister;
+    }
+
+    public void delete(InwardRegister ir) {
+        entityManager.remove(ir);
     }
 }
