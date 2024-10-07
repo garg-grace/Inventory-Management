@@ -74,6 +74,24 @@ public class ProductController {
                         System.out.println(e.getMessage());
                     }
                     break;
+                case 5:
+                    System.out.println("Enter Product Id");
+                    int productId = sc.nextInt();
+                    try {
+                        product = productService.getById(productId);
+                    } catch (ResourceNotFoundException e) {
+                        System.out.println(e.getMessage());
+                        break;
+                    }
+                    System.out.println("Enter Title");
+                    sc.nextLine();
+                    product.setTitle(sc.nextLine());
+                    System.out.println("Enter Price");
+                    product.setPrice(sc.nextDouble());
+
+                    productService.insert(entityManager,product);
+                    System.out.println("Product record updated");
+                    break;
                 default:
                     System.out.println("Invalid input..");
                     break;
